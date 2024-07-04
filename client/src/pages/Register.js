@@ -1,13 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    alert("📝 Registration submitted (demo only)");
+    setError("");
+
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/register", {
+        name,
+        email,
+        password,
+      });
+
+      console.log("✅ Registration success:", res.data);
+      alert("✅ Registration Successful!");
+      navigate("/login");
+    } catch (err) {
+      console.error("❌ Registration failed:", err.response?.data?.error);
+      setError(err.response?.data?.error || "Something went wrong.");
+    }
   };
 
   return (
@@ -39,6 +58,7 @@ function Register() {
           style={styles.input}
         />
         <button type="submit" style={styles.button}>REGISTER</button>
+        {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
       </form>
     </div>
   );

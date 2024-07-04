@@ -1,12 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    alert(" Login submitted✅ ");
+    setError("");
+
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
+
+      const { token } = res.data;
+      localStorage.setItem("token", token);
+
+      alert("✅ Login successful!");
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login failed:", err.response?.data?.error || err.message);
+      setError(err.response?.data?.error || "Login failed. Try again.");
+    }
   };
 
   return (
@@ -30,6 +50,7 @@ function Login() {
           style={styles.input}
         />
         <button type="submit" style={styles.button}>LOGIN</button>
+        {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
       </form>
     </div>
   );

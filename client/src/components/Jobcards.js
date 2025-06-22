@@ -76,6 +76,6 @@ function JobCards() {
     </div>
   );
 }
-//i think we're almost there
+//all for commit
 
 export default JobCards;

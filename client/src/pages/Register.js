@@ -20,5 +20,6 @@ function Register() {
     </div>
   );
 }
+//all for commits
 
 export default Register;

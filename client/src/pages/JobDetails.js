@@ -50,5 +50,6 @@ function JobDetails() {
   );
 }
 
-//triggers dw
+//all for commits
+
 export default JobDetails;

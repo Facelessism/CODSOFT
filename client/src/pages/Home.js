@@ -64,6 +64,6 @@ function Home() {
   );
 }
 
-//all for commit
+//all for commits
 
 export default Home;

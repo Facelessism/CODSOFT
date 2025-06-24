@@ -50,6 +50,6 @@ function JobDetails() {
   );
 }
 
-// git add 
+// for a commit 
 
 export default JobDetails;

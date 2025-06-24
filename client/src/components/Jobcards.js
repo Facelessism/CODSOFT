@@ -77,6 +77,6 @@ function JobCards() {
   );
 }
 
-//git add 
+//for a commit
 
 export default JobCards;

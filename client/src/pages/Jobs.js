@@ -23,5 +23,5 @@ function Jobs() {
   );
 }
 
-//all for commits
+//git add 
 export default Jobs;

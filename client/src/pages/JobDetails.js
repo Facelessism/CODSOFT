@@ -1,26 +1,27 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+// Dummy job data
 const dummyJobs = [
   {
-    ID: "1",
-    Title: "Frontend Developer",
-    Company: "Tech Solutions",
-    Location: "Remote",
-    Type: "Full-time",
-    Description: "Build and maintain user interfaces using React.",
-    Requirements: ["React", "CSS", "REST APIs"],
-    Salary: "₹6 - ₹8 LPA",
+    id: "1",
+    title: "Frontend Developer",
+    company: "Tech Solutions",
+    location: "Remote",
+    type: "Full-time",
+    description: "Build and maintain user interfaces using React.",
+    requirements: ["React", "CSS", "REST APIs"],
+    salary: "₹6 - ₹8 LPA",
   },
   {
-    ID: "2",
-    Title: "Backend Developer",
-    Company: "CodeFactory",
-    Location: "Bangalore",
-    Type: "Part-time",
-    Description: "Work with Node.js and Express to build APIs.",
-    Requirements: ["Node.js", "MongoDB", "JWT"],
-    Salary: "₹4 - ₹6 LPA",
+    id: "2",
+    title: "Backend Developer",
+    company: "CodeFactory",
+    location: "Bangalore",
+    type: "Part-time",
+    description: "Work with Node.js and Express to build APIs.",
+    requirements: ["Node.js", "MongoDB", "JWT"],
+    salary: "₹4 - ₹6 LPA",
   },
 ];
 
@@ -29,18 +30,31 @@ function JobDetails() {
   const job = dummyJobs.find((job) => job.id === id);
 
   if (!job) {
-    return <p>Job not found.</p>;
+    return (
+      <div style={{ padding: "40px", color: "red" }}>
+        <h2>Job not found.</h2>
+      </div>
+    );
   }
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h2>{job.title}</h2>
-      <p><strong>Company:</strong> {job.company}</p>
-      <p><strong>Location:</strong> {job.location}</p>
-      <p><strong>Type:</strong> {job.type}</p>
-      <p><strong>Salary:</strong> {job.salary}</p>
-      <p><strong>Description:</strong> {job.description}</p>
-      <p><strong>Requirements:</strong></p>
+    <div
+      style={{
+        padding: "40px",
+        backgroundColor: "#001f3f",
+        color: "#ffffff",
+        minHeight: "100vh",
+      }}
+    >
+      <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>
+        {job.title.toUpperCase()}
+      </h2>
+      <p><strong>COMPANY:</strong> {job.company}</p>
+      <p><strong>LOCATION:</strong> {job.location}</p>
+      <p><strong>TYPE:</strong> {job.type}</p>
+      <p><strong>SALARY:</strong> {job.salary}</p>
+      <p><strong>DESCRIPTION:</strong> {job.description}</p>
+      <p><strong>REQUIREMENTS:</strong></p>
       <ul>
         {job.requirements.map((req, idx) => (
           <li key={idx}>{req}</li>
@@ -49,7 +63,5 @@ function JobDetails() {
     </div>
   );
 }
-
-// for a commit 
 
 export default JobDetails;

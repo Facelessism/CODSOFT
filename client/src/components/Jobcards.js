@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 function JobCard({ job }) {
   const {
     id,
-    title = "UNTITLED ROLE",
-    company = "UNKNOWN COMPANY",
-    location = "UNSPECIFIED LOCATION",
+    title = "Untitled Role",
+    company = "Unknown Company",
+    location = "Unspecified Location",
     type = "N/A",
-    description = "NO DESCRIPTION AVAILABLE"
+    description = "No description available",
   } = job || {};
 
   return (
@@ -24,25 +24,24 @@ function JobCard({ job }) {
           marginBottom: "18px",
           borderRadius: "6px",
           backgroundColor: "#f9f9f9",
-          transition: "box-shadow 0.2s ease-in-out"
+          transition: "box-shadow 0.2s ease-in-out",
         }}
         onMouseEnter={(e) =>
           (e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)")
         }
         onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
       >
-        <h3 style={{ marginBottom: "8px" }}>{title}</h3>
+        <h3 style={{ marginBottom: "8px", color: "#333" }}>
+          {title}
+        </h3>
         <p style={{ margin: "4px 0" }}>
-          <strong>TITLE:</strong> {title}
+          <strong>Company:</strong> {company}
         </p>
         <p style={{ margin: "4px 0" }}>
-          <strong>COMPANY:</strong> {company}
+          <strong>Location:</strong> {location}
         </p>
         <p style={{ margin: "4px 0" }}>
-          <strong>LOCATION:</strong> {location}
-        </p>
-        <p style={{ margin: "4px 0" }}>
-          <strong>TYPE:</strong> {type}
+          <strong>Type:</strong> {type}
         </p>
         <p style={{ marginTop: "10px", color: "#555" }}>{description}</p>
       </div>
@@ -51,32 +50,51 @@ function JobCard({ job }) {
 }
 
 function JobCards() {
-  const job1 = {
-    ID: 1,
-    Title: "Software Engineer",
-    Company: "TechCorp",
-    Location: "Bangalore",
-    Type: "Full-time",
-    Description: "Build modern web apps using React."
-  };
-
-  const job2 = {
-    ID: 2,
-    Title: "Frontend Developer",
-    Company: "Designify",
-    Location: "Remote",
-    Type: "Part-time",
-    Description: "Focus on UI/UX improvements in existing systems."
-  };
+  const jobs = [
+    {
+      id: 1,
+      title: "Frontend Developer",
+      company: "Techmech",
+      location: "Remote",
+      type: "Full-time",
+      description: "Build and maintain React UI components.",
+    },
+    {
+      id: 2,
+      title: "Backend Developer",
+      company: "BigMinds",
+      location: "Bangalore",
+      type: "Part-time",
+      description: "Work on APIs with Node.js and Express.",
+    },
+    {
+      id: 3,
+      title: "UI/UX Designer",
+      company: "UI pvt.ltd",
+      location: "Mumbai",
+      type: "Remote Internship",
+      description: "Design intuitive user experiences.",
+    },
+    {
+      id: 4,
+      title: "AI-ML Engineer",
+      company: "TechTitans",
+      location: "Hyderabad",
+      type: "Part-time",
+      description: "Build and train machine learning models.",
+    },
+  ];
 
   return (
-    <div>
-      <JobCard job={job1} />
-      <JobCard job={job2} />
+    <div style={{ padding: "40px", backgroundColor: "#eef6ff" }}>
+      <h2 style={{ fontSize: "28px", marginBottom: "20px", textAlign: "center" }}>
+        Featured Job Cards
+      </h2>
+      {jobs.map((job) => (
+        <JobCard key={job.id} job={job} />
+      ))}
     </div>
   );
 }
-
-//for a commit
 
 export default JobCards;

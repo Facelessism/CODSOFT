@@ -1,0 +1,25 @@
+{
+  "name": "codsoft1",
+  "version": "1.0.0",
+  "description": "This is a Job Board website where employers can post new jobs and candidates can apply.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Facelessism/Codsoft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Facelessism/Codsoft/issues"
+  },
+  "homepage": "https://github.com/Facelessism/Codsoft#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.1"
+  }
+}

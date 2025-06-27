@@ -31,9 +31,7 @@ function JobCard({ job }) {
         }
         onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
       >
-        <h3 style={{ marginBottom: "8px", color: "#333" }}>
-          {title}
-        </h3>
+        <h3 style={{ marginBottom: "8px", color: "#333" }}>{title}</h3>
         <p style={{ margin: "4px 0" }}>
           <strong>Company:</strong> {company}
         </p>
@@ -49,52 +47,4 @@ function JobCard({ job }) {
   );
 }
 
-function JobCards() {
-  const jobs = [
-    {
-      id: 1,
-      title: "Frontend Developer",
-      company: "Techmech",
-      location: "Remote",
-      type: "Full-time",
-      description: "Build and maintain React UI components.",
-    },
-    {
-      id: 2,
-      title: "Backend Developer",
-      company: "BigMinds",
-      location: "Bangalore",
-      type: "Part-time",
-      description: "Work on APIs with Node.js and Express.",
-    },
-    {
-      id: 3,
-      title: "UI/UX Designer",
-      company: "UI pvt.ltd",
-      location: "Mumbai",
-      type: "Remote Internship",
-      description: "Design intuitive user experiences.",
-    },
-    {
-      id: 4,
-      title: "AI-ML Engineer",
-      company: "TechTitans",
-      location: "Hyderabad",
-      type: "Part-time",
-      description: "Build and train machine learning models.",
-    },
-  ];
-
-  return (
-    <div style={{ padding: "40px", backgroundColor: "#eef6ff" }}>
-      <h2 style={{ fontSize: "28px", marginBottom: "20px", textAlign: "center" }}>
-        Featured Job Cards
-      </h2>
-      {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
-      ))}
-    </div>
-  );
-}
-
-export default JobCards;
+export default JobCard;

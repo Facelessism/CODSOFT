@@ -1,3 +1,4 @@
+// src/data/JobsData.js
 const jobs = [
   {
     id: 1,
@@ -20,7 +21,7 @@ const jobs = [
     title: "UI/UX Designer",
     company: "UI pvt.ltd",
     location: "Mumbai",
-    type: "Remote Internship",
+    type: "Internship",
     description: "Design intuitive user experiences.",
   },
   {

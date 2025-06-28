@@ -6,7 +6,6 @@ import jobs from "../data/JobsData"; // adjust path as needed
 function JobDetails() {
   const { id } = useParams();
 
-  // URL param is a string, job.id is number — so convert it
   const job = jobs.find((job) => job.id === parseInt(id));
 
   if (!job) {
@@ -20,6 +19,7 @@ function JobDetails() {
       <p><strong>Location:</strong> {job.location}</p>
       <p><strong>Type:</strong> {job.type}</p>
       <p><strong>Description:</strong> {job.description}</p>
+      <p><strong>deadline:</strong> {job.deadline}</p>
     </div>
   );
 }

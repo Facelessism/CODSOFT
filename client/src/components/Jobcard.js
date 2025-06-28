@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 function JobCard({ job }) {
   const {
     id,
@@ -9,6 +10,7 @@ function JobCard({ job }) {
     location = "Unspecified Location",
     type = "N/A",
     description = "No description available",
+    deadline = "Unknown date"
   } = job || {};
 
   return (
@@ -40,6 +42,9 @@ function JobCard({ job }) {
         </p>
         <p style={{ margin: "4px 0" }}>
           <strong>Type:</strong> {type}
+        </p>
+        <p style={{ margin: "4px 0" }}>
+         <strong>deadline:</strong> {deadline}
         </p>
         <p style={{ marginTop: "10px", color: "#555" }}>{description}</p>
       </div>

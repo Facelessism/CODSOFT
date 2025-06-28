@@ -7,6 +7,7 @@ const jobs = [
     location: "Remote",
     type: "Full-time",
     description: "Build and maintain React UI components.",
+    deadline: "2025-07-31",
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ const jobs = [
     location: "Bangalore",
     type: "Part-time",
     description: "Work on APIs with Node.js and Express.",
+    deadline: "2025-07-31",
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ const jobs = [
     location: "Mumbai",
     type: "Internship",
     description: "Design intuitive user experiences.",
+    deadline: "2025-07-31",
   },
   {
     id: 4,
@@ -31,6 +34,7 @@ const jobs = [
     location: "Hyderabad",
     type: "Part-time",
     description: "Build and train machine learning models.",
+    deadline: "2025-07-31",
   },
 ];
 

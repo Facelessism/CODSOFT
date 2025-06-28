@@ -1,5 +1,6 @@
 import React from "react";
 import ResumeUploads from "../components/ResumeUploads"; 
+
 function Home() {
   return (
     <div
@@ -58,17 +59,13 @@ function Home() {
       {/* 🔽 Resume Upload Section */}
       <ResumeUploads /> {/* ✅ Proper component rendering */}
 
-      <div style={{ marginTop: "20px" }}>
-        <img
-          src="https://via.placeholder.com/420x220?text=Find+Your+Next+Job"
-          alt="Job illustration"
-          style={{
-            maxWidth: "100%",
-            borderRadius: "10px",
-            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-          }}
-        />
+      <div style={{ marginTop: "40px", display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap" }}>
+       <img
+           src="https://storyset.com/illustration/job-hunt/rafiki"
+           style={{ width: "400px", maxWidth: "80%", borderRadius: "4px" }}
+       />
       </div>
+
     </div>
   );
 }

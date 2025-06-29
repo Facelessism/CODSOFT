@@ -1,27 +1,84 @@
-### JobBoard — Full Stack Job Portal
+### JobBoard Web App
 
-A beginner-friendly full stack job listing web app built with **React**, **Node.js**, & **Express**. Users can browse through job listings, add new job openings, search and filter by criteria, and upload their resume.
+A modern job board platform to discover, filter, and apply for jobs — built with **React**, **Node.js**, and **Express**.
 
 
-### Features Implemented
+### Features Implemented (as of June 29, 2025)
 
-- React frontend with routing using `react-router-dom`
-- Pages: Home, Jobs, Job Details, Dashboard, Register, Login
-- Dynamic `JobCard` component to render listings
-- Static job data rendered on `/jobs` route
-- Search bar with filtering by:
-  - Keywords (title/company)
-  - Location
-  - Category (Full-time, Part-time, Remote, Internship)
-- Resume upload via file input (PDF/DOC/DOCX) using `axios` POST
-- Backend built with `Express.js`, integrated resume upload route
-- UI enhancements:
-  - Deep blue-themed homepage
-  - Animated button hovers and responsive layout
-- Fully version-controlled with day-wise simulated commits
-- Git pushed to remote repository (June 28)
+### Job Search & Listings
+- Browse job listings with **title**, **company**, **location**, **type**, **description**, and **deadline**
+- Click on any job card to view **detailed information**
+- **Apply Now** button with confirmation
+
+### Search & Filter
+- Filter jobs by:
+  - **Keyword** (title or company)
+  - **Location**
+  - **Category** (Full-time, Part-time, Remote, Internship)
+
+### Resume Upload (Functional)
+- Upload `.pdf`, `.doc`, or `.docx` resumes
+- Resume files are sent to the backend and saved in `/server/uploads/`
+- Success & failure messages shown on the frontend
+
+### Frontend (React)
+- Pages:
+  - `Home.js` (welcome + upload)
+  - `Jobs.js` (listings + filter)
+  - `JobDetails.js` (detailed view)
+  - `Dashboard.js`, `Login.js`, `Register.js` (UI stubs)
+- Beautiful UI with deep blue theme and responsive layout
+
+### Backend (Express)
+- Express API setup in `/server/index.js`
+- `POST /api/resume/upload` for resume file uploads using `multer`
+- CORS enabled for cross-origin support
 
 ---
 
-### Project Structure
-- Coming Soon...
+### Folder Structure
+codsoft1/
+├── client/ # React Frontend
+│ ├── src/
+│ │ ├── components/
+│ │ │ └── JobCard.js
+│ │ ├── data/
+│ │ │ └── JobsData.js
+│ │ ├── pages/
+│ │ │ ├── Home.js
+│ │ │ ├── Jobs.js
+│ │ │ ├── JobDetails.js
+│ │ │ ├── Dashboard.js
+│ │ │ ├── Login.js
+│ │ │ └── Register.js
+│ │ ├── App.js
+│ │ └── index.js
+│ └── package.json
+├── server/ # Express Backend
+│ ├── uploads/ # Stores uploaded resumes
+│ └── index.js
+└── README.md
+
+### How to Run the Project Locally
+
+### 1. Clone the Repository in Git Bash
+
+  git clone https://github.com/your-username/jobboard-app.git
+  cd jobboard-app
+
+### 2. Start Backend
+  cd server
+  npm install
+  node index.js
+
+### 3. Start Frontend
+  cd ../client
+  npm install
+  npm start
+
+
+### From ME
+This project is just a part of the tasks assigned for Codsoft Internship Programme
+All the progress & related issues reflect the real-world projectflow.
+
+

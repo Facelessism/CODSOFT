@@ -5,7 +5,6 @@ import jobs from "../data/JobsData"; // adjust path as needed
 
 function JobDetails() {
   const { id } = useParams();
-
   const job = jobs.find((job) => job.id === parseInt(id));
 
   if (!job) {
@@ -19,7 +18,25 @@ function JobDetails() {
       <p><strong>Location:</strong> {job.location}</p>
       <p><strong>Type:</strong> {job.type}</p>
       <p><strong>Description:</strong> {job.description}</p>
-      <p><strong>deadline:</strong> {job.deadline}</p>
+      <p><strong>Deadline:</strong> {job.deadline}</p>
+
+      {/* Apply Now Button */}
+      <button
+        onClick={() => alert(`Application sent for ${job.title} at ${job.company}`)}
+        style={{
+          padding: "12px 24px",
+          backgroundColor: "#28a745",
+          color: "#fff",
+          border: "none",
+          borderRadius: "6px",
+          marginTop: "30px",
+          cursor: "pointer",
+          fontSize: "16px",
+          boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        Apply Now
+      </button>
     </div>
   );
 }

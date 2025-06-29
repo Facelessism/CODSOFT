@@ -47,6 +47,24 @@ function JobCard({ job }) {
          <strong>deadline:</strong> {deadline}
         </p>
         <p style={{ marginTop: "10px", color: "#555" }}>{description}</p>
+        <button
+          onClick={(e) => {
+          e.preventDefault();
+          alert(`Application sent for ${title} at ${company}`);
+                          }}
+         style={{
+         padding: "8px 16px",
+         backgroundColor: "#007bff",
+         color: "#fff",
+         border: "none",
+         borderRadius: "4px",
+         marginTop: "10px",
+         cursor: "pointer"
+                 }}
+          >
+          Apply Now
+        </button>
+
       </div>
     </Link>
   );

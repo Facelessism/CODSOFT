@@ -1,5 +1,6 @@
 import React from "react";
 import ResumeUploads from "../components/ResumeUploads"; 
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -58,8 +59,24 @@ function Home() {
 
       {/* 🔽 Resume Upload Section */}
       <ResumeUploads /> {/* ✅ Proper component rendering */}
+      <Link to="/post-job">
+         <button
+             style={{
+             padding: "12px 24px",
+             fontSize: "16px",
+             backgroundColor: "#007bff",
+             color: "white",
+             border: "none",
+             borderRadius: "5px",
+             cursor: "pointer",
+             marginTop: "20px",
+                   }}
+           >
+                Post a Job
+           </button>
+      </Link>
 
-      <div style={{ marginTop: "40px", display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap" }}>
+    <div style={{ marginTop: "40px", display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap" }}>
        <img
            src="https://storyset.com/illustration/job-hunt/rafiki"
            style={{ width: "400px", maxWidth: "80%", borderRadius: "4px" }}

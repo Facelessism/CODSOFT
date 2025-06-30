@@ -7,6 +7,7 @@ import JobDetails from "./pages/JobDetails";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import PostJob from "./pages/PostJob";
 
 function App() {
   return (
@@ -89,6 +90,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/post-job" element={<PostJob />} />
         </Routes>
       </div>
     </Router>

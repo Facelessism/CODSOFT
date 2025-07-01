@@ -50,7 +50,7 @@ const styles = {
     maxWidth: "400px",
     margin: "0 auto",
     textAlign: "center",
-    backgroundColor: "#fff0f0",
+    backgroundColor: "#f4f9ff",
     borderRadius: "10px",
   },
   form: {

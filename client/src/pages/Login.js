@@ -1,22 +1,65 @@
+import React, { useState } from "react";
+
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    alert(" Login submitted✅ ");
+  };
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>TAP to Login</h2>
-      <form>
-        <div style={{ marginBottom: "10px" }}>
-          <label>Your Email: </label><br />
-          <input type="email" name="email" />
-        </div>
-        <div style={{ marginBottom: "10px" }}>
-          <label>Youe Password: </label><br />
-          <input type="password" name="password" />
-        </div>
-        <button type="submit">Log in</button>
+    <div style={styles.container}>
+      <h2>Login to your DreamJobs</h2>
+      <form onSubmit={handleLogin} style={styles.form}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          style={styles.input}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          style={styles.input}
+        />
+        <button type="submit" style={styles.button}>LOGIN</button>
       </form>
     </div>
   );
 }
 
-//all for commits
+const styles = {
+  container: {
+    padding: "50px",
+    maxWidth: "400px",
+    margin: "0 auto",
+    textAlign: "center",
+    backgroundColor: "#f4f9ff",
+    borderRadius: "10px",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "16px",
+  },
+  input: {
+    padding: "10px",
+    fontSize: "16px",
+  },
+  button: {
+    padding: "10px",
+    backgroundColor: "#007bff",
+    color: "white",
+    border: "none",
+    cursor: "pointer",
+  },
+};
 
 export default Login;

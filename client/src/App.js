@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PostJob from "./pages/PostJob";
-
+import Admin from "./pages/Admin";
 function App() {
   return (
     <Router>
@@ -91,6 +91,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/post-job" element={<PostJob />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </Router>

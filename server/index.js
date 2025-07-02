@@ -4,12 +4,26 @@ import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+dotenv.config();
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("✅MongoDB connected!!!"))
+  .catch((err) => {
+    console.error("❌MongoDB connection failed!!!", err.message);
+    process.exit(1);
+  });
 
 app.use(cors());
 app.use(express.json());
@@ -28,16 +42,19 @@ const upload = multer({ storage });
 
 app.post("/api/resume/upload", upload.single("resume"), (req, res) => {
   if (!req.file) {
-    return res.status(400).json({ error: "No file uploaded" });
+    return res.status(400).json({ error: "No Files Uploaded" });
   }
 
   res.json({
-    message: "File uploaded successfully",
+    message: "File Uploaded Successfully!!!",
     originalName: req.file.originalname,
     path: req.file.path
   });
 });
 
+import authRoutes from "./routes/auth.js";
+app.use("/api/auth", authRoutes);
+
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

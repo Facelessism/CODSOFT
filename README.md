@@ -34,31 +34,6 @@ A modern job board platform to discover, filter, and apply for jobs — built wi
 - `POST /api/resume/upload` for resume file uploads using `multer`
 - CORS enabled for cross-origin support
 
----
-
-### Folder Structure
-codsoft1/
-├── client/ # React Frontend
-│ ├── src/
-│ │ ├── components/
-│ │ │ └── JobCard.js
-│ │ ├── data/
-│ │ │ └── JobsData.js
-│ │ ├── pages/
-│ │ │ ├── Home.js
-│ │ │ ├── Jobs.js
-│ │ │ ├── JobDetails.js
-│ │ │ ├── Dashboard.js
-│ │ │ ├── Login.js
-│ │ │ └── Register.js
-│ │ ├── App.js
-│ │ └── index.js
-│ └── package.json
-├── server/ # Express Backend
-│ ├── uploads/ # Stores uploaded resumes
-│ └── index.js
-└── README.md
-
 ### How to Run the Project Locally
 
 ### 1. Clone the Repository in Git Bash

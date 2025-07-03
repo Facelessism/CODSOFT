@@ -19,9 +19,9 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
-  .then(() => console.log("✅MongoDB connected!!!"))
+  .then(() => console.log("✅MongoDB COnnected!!!"))
   .catch((err) => {
-    console.error("❌MongoDB connection failed!!!", err.message);
+    console.error("❌MongoDB Connection Failed!!!", err.message);
     process.exit(1);
   });
 
@@ -53,7 +53,10 @@ app.post("/api/resume/upload", upload.single("resume"), (req, res) => {
 });
 
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/User.js";
+
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

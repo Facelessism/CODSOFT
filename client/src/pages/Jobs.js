@@ -1,20 +1,54 @@
-import React, { useState } from "react";
-import JobCard from "../components/Jobcard";  
-import jobs from "../data/JobsData";          
+import React, { useState, useEffect } from "react";
+import JobCard from "../components/Jobcard";
+import axios from "axios";
 
 function Jobs() {
+  const [jobs, setJobs] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
   const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const filteredJobs = jobs.filter((job) => {
-    const keywordMatch = job.title.toLowerCase().includes(keyword.toLowerCase()) ||
-                         job.company.toLowerCase().includes(keyword.toLowerCase());
-    const locationMatch = job.location.toLowerCase().includes(location.toLowerCase());
-    const categoryMatch = category === "" || job.type.toLowerCase().includes(category.toLowerCase());
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/jobs");
+        setJobs(res.data);
+        setFilteredJobs(res.data);
+      } catch (err) {
+        setError("Failed to fetch jobs from the server.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return keywordMatch && locationMatch && categoryMatch;
-  });
+    fetchJobs();
+  }, []);
+
+  useEffect(() => {
+    const filtered = jobs.filter((job) => {
+      const keywordMatch =
+        job.title.toLowerCase().includes(keyword.toLowerCase()) ||
+        job.company.toLowerCase().includes(keyword.toLowerCase());
+
+      const locationMatch = job.location
+        .toLowerCase()
+        .includes(location.toLowerCase());
+
+      const categoryMatch =
+        category === "" ||
+        job.type.toLowerCase().includes(category.toLowerCase());
+
+      return keywordMatch && locationMatch && categoryMatch;
+    });
+
+    setFilteredJobs(filtered);
+  }, [keyword, location, category, jobs]);
+
+  if (loading) return <p style={{ padding: "40px" }}>Loading jobs...</p>;
+  if (error) return <p style={{ padding: "40px", color: "red" }}>{error}</p>;
 
   return (
     <div style={{ padding: "40px", backgroundColor: "#eef6ff" }}>
@@ -49,9 +83,9 @@ function Jobs() {
       </div>
 
       {filteredJobs.length > 0 ? (
-        filteredJobs.map((job) => <JobCard key={job.id} job={job} />)
+        filteredJobs.map((job) => <JobCard key={job._id} job={job} />)
       ) : (
-        <p>No jobs found.</p>
+        <p>No Jobs Found.</p>
       )}
     </div>
   );

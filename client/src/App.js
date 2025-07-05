@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PostJob from "./pages/PostJob";
 import Admin from "./pages/Admin";
+
 function App() {
   return (
     <Router>

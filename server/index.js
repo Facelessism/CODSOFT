@@ -54,9 +54,11 @@ app.post("/api/resume/upload", upload.single("resume"), (req, res) => {
 
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/User.js";
+import jobRoutes from "./routes/job.js";
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/jobs", jobRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

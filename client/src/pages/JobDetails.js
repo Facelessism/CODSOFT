@@ -1,16 +1,31 @@
-// JobDetails.js
-import React from "react";
+import React, { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import jobs from "../data/JobsData"; // adjust path as needed
+import axios from "axios";  
 
 function JobDetails() {
   const { id } = useParams();
-  const job = jobs.find((job) => job.id === parseInt(id));
+  const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  if (!job) {
-    return <p>Job not found.</p>;
-  }
+  useEffect(() => {
+    const fetchJob = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/jobs/${id}`);
+        setJob(res.data);
+      } catch (err) {
+        setError("Job not found or server error.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchJob();
+  }, [id]);
+
+  if (loading) return <p style={{ padding: "40px" }}>Loading...</p>;
+  if (error) return <p style={{ padding: "40px", color: "red" }}>{error}</p>;
+ 
   return (
     <div style={{ padding: "40px", background: "#e0f7ff", minHeight: "100vh" }}>
       <h2 style={{ color: "#003366" }}>{job.title}</h2>
@@ -20,7 +35,6 @@ function JobDetails() {
       <p><strong>Description:</strong> {job.description}</p>
       <p><strong>Deadline:</strong> {job.deadline}</p>
 
-      {/* Apply Now Button */}
       <button
         onClick={() => alert(`Application sent for ${job.title} at ${job.company}`)}
         style={{

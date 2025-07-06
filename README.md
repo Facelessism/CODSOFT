@@ -63,6 +63,15 @@ A modern job board platform to discover, filter, and apply for jobs — built wi
   npm install
   npm start
 
+### 4. Screenshots
+
+  - ![Home Page](client/public/screenshots/Home.png)
+  - ![Jobs Page](client/public/screenshots/jobs.png)
+  - ![Dashboard](client/public/screenshots/Dashboard.png)
+  - ![Login](client/public/screenshots/Login.png)
+  - ![Register](client/public/screenshots/Register.png)
+  - [Search Bar](client/public/screenshots/Search.png)
+
 
 ### From ME
 This project is just a part of the tasks assigned for Codsoft Internship Programme

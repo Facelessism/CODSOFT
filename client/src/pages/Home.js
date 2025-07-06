@@ -10,7 +10,7 @@ function Home() {
         textAlign: "center",
         fontSize: "24px",
         lineHeight: "1.6",
-        backgroundColor: "#001f4d", // Deep Blue
+        backgroundColor: "#001f4d",
         color: "#f2f2f2",
         minHeight: "100vh",
       }}

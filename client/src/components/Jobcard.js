@@ -15,7 +15,7 @@ function JobCard({ job }) {
 
   return (
     <Link
-      to={`/jobs/${id}`}
+      to={`/jobs/${job._id}`}
       style={{ textDecoration: "none", color: "#222" }}
     >
       <div

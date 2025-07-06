@@ -16,9 +16,9 @@ function Jobs() {
       try {
         const res = await axios.get("http://localhost:5000/api/jobs");
         setJobs(res.data);
-        setFilteredJobs(res.data);
+        setFilteredJobs(res.data); 
       } catch (err) {
-        setError("Failed to fetch jobs from the server.");
+        setError("❌ Failed to fetch jobs from the server.");
       } finally {
         setLoading(false);
       }
@@ -38,8 +38,7 @@ function Jobs() {
         .includes(location.toLowerCase());
 
       const categoryMatch =
-        category === "" ||
-        job.type.toLowerCase().includes(category.toLowerCase());
+        category === "" || job.type.toLowerCase() === category.toLowerCase();
 
       return keywordMatch && locationMatch && categoryMatch;
     });
@@ -47,32 +46,33 @@ function Jobs() {
     setFilteredJobs(filtered);
   }, [keyword, location, category, jobs]);
 
-  if (loading) return <p style={{ padding: "40px" }}>Loading jobs...</p>;
+  if (loading) return <p style={{ padding: "40px" }}>⏳ Loading All Jobs...</p>;
   if (error) return <p style={{ padding: "40px", color: "red" }}>{error}</p>;
 
   return (
     <div style={{ padding: "40px", backgroundColor: "#eef6ff" }}>
       <h2 style={{ fontSize: "28px", marginBottom: "20px" }}>Search Jobs</h2>
 
+      {/* 🔍 Filters */}
       <div style={{ marginBottom: "30px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <input
           type="text"
           placeholder="Search by keyword..."
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          style={{ padding: "10px", width: "200px", borderRadius: "4px", border: "1px solid #ccc" }}
+          style={inputStyle}
         />
         <input
           type="text"
           placeholder="Location..."
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          style={{ padding: "10px", width: "200px", borderRadius: "4px", border: "1px solid #ccc" }}
+          style={inputStyle}
         />
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          style={{ padding: "10px", width: "200px", borderRadius: "4px", border: "1px solid #ccc" }}
+          style={inputStyle}
         >
           <option value="">All Types</option>
           <option value="full-time">Full-time</option>
@@ -82,13 +82,21 @@ function Jobs() {
         </select>
       </div>
 
+      {/* 📋 Job Listings */}
       {filteredJobs.length > 0 ? (
         filteredJobs.map((job) => <JobCard key={job._id} job={job} />)
       ) : (
-        <p>No Jobs Found.</p>
+        <p>No Matching Jobs Found.</p>
       )}
     </div>
   );
 }
+
+const inputStyle = {
+  padding: "10px",
+  width: "200px",
+  borderRadius: "4px",
+  border: "1px solid #ccc",
+};
 
 export default Jobs;

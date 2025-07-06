@@ -15,8 +15,8 @@ function Home() {
         minHeight: "100vh",
       }}
     >
-      <h2 style={{ fontSize: "40px", marginBottom: "20px", color: "#ffffff" }}>
-        Welcome to JobBoard
+      <h2 style={{ fontSize: "70px", marginBottom: "20px", color: "#ffffff" }}>
+        Welcome to DreamJobs
       </h2>
 
       <p style={{ color: "#d9eaff", fontSize: "20px" }}>
@@ -47,7 +47,7 @@ function Home() {
 
       <p
         style={{
-          fontSize: "18px",
+          fontSize: "22px",
           color: "#cce0ff",
           maxWidth: "700px",
           margin: "0 auto 30px",
@@ -62,7 +62,7 @@ function Home() {
       <Link to="/post-job">
          <button
              style={{
-             padding: "12px 24px",
+             padding: "18px 32px",
              fontSize: "16px",
              backgroundColor: "#007bff",
              color: "white",
@@ -77,10 +77,7 @@ function Home() {
       </Link>
 
     <div style={{ marginTop: "40px", display: "flex", justifyContent: "center", gap: "30px", flexWrap: "wrap" }}>
-       <img
-           src="https://storyset.com/illustration/job-hunt/rafiki"
-           style={{ width: "400px", maxWidth: "80%", borderRadius: "4px" }}
-       />
+       
       </div>
 
     </div>

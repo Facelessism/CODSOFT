@@ -1,14 +1,26 @@
-### JobBoard Web App
+### DreamJobs Web App
 
 A modern job board platform to discover, filter, and apply for jobs — built with **React**, **Node.js**, and **Express**.
 
+### Tech Stack
+  - **Frontend:** React, React Router DOM, Axios
+  - **Backend:** Node.js, Express.js, Multer
+  - **Database:** MongoDB + Compass
+  - **Authentication:** JSON Web Token (JWT)
+  - **Dev Tools:** Postman, MongoDB Compass, Git Bash
 
-### Features Implemented (as of June 29, 2025)
+
+### Features Implemented:-
+### User Authentication
+- Register with name, email & password
+- Login with JWT-based authentications
+- Protected Dashboard that shows user info
+- Logout button added
 
 ### Job Search & Listings
-- Browse job listings with **title**, **company**, **location**, **type**, **description**, and **deadline**
+- Browse job listings with **title**, **company**, **location**, **type**, **description**, & **deadline**
 - Click on any job card to view **detailed information**
-- **Apply Now** button with confirmation
+- **Apply Now** button with confirmation notif.
 
 ### Search & Filter
 - Filter jobs by:
@@ -19,7 +31,7 @@ A modern job board platform to discover, filter, and apply for jobs — built wi
 ### Resume Upload (Functional)
 - Upload `.pdf`, `.doc`, or `.docx` resumes
 - Resume files are sent to the backend and saved in `/server/uploads/`
-- Success & failure messages shown on the frontend
+- Success & failure messages shown at the frontend
 
 ### Frontend (React)
 - Pages:

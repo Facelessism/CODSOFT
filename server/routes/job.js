@@ -23,11 +23,11 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const jobs = await Job.findById(req.params.id);
-    if (!job) return res.status(404).json({ error: "Job Not Found!!!"});
-    res.json(job);
+    const jobs = await Job.find().sort({ createdAt: -1 });
+    res.json(jobs);
   } catch (err) {
-    res.status(500).json({ error: "Server Error 404" });
+    console.error("Error Fetching Jobs:", err.message);
+    res.status(500).json({ error: "Failed To Fetch Jobs" });
   }
 });
 

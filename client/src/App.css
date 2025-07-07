@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+@media screen and (min-device-width: 1024px) {
+  body {
+    zoom: 100%;
+  }
+}

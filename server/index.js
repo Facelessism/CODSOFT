@@ -1,15 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const authRoutes = require("./routes/auth");
 
-app.use("/api/auth", authRoutes);
 app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Server running");
 });
+
+const authRoutes = require("./routes/auth");
+const quizRoutes = require("./routes/quiz");
+
+app.use("/api/auth", authRoutes);
+app.use("/api/quiz", quizRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

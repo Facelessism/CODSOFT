@@ -13,4 +13,14 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const quiz = await Quiz.findById(req.params.id);
+    res.json(quiz);
+  } catch (err) {
+    console.log("Fetch quiz error:", err);
+    res.status(404).json({ message: "Quiz Not Found" });
+  }
+});
+
 module.exports = router;

@@ -22,6 +22,16 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <h1>JazzQuizMaker</h1>
+
+         <nav>
+          <Link to="/quizzes">Browse For Quizzes</Link>{" "}
+          {localStorage.getItem("token") && (
+            <>
+              | <Link to="/create">Create Quiz</Link>
+            </>
+          )}
+        </nav>
+
         <Routes>
           <Route path="/create" element={<CreateQuiz />} />
           <Route path="/quizzes" element={<QuizList />} />

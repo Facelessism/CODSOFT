@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
+import{ useNavigate } from "react-router-dom";
 
 export default function CreateQuiz() {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [questions, setQuestions] = useState([
     { question: "", options: ["", "", "", ""], answer: "" },
   ]);
+
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You need to login first!!!");
+      navigate("/login");
+    }
+  }, []);
 
   const handleChange = (i, field, value) => {
     const copy = [...questions];

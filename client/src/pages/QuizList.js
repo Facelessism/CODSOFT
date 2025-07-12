@@ -18,7 +18,7 @@ export default function QuizList() {
       <h2>Available Quizzes</h2>
       <ul>
         {quizzes.map((quiz) => (
-          <li>{quiz.title}</li>
+          <li key={quiz._id}>{quiz.title}</li>
         ))}
       </ul>
     </div>

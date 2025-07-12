@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateQuiz from "./pages/CreateQuiz";
 import QuizList from "./pages/QuizList";
 import TakeQuiz from "./pages/TakeQuiz";
+import HomePage from "./pages/HomePage";
+
 
 function App() {
   useEffect(() => {
@@ -33,6 +35,7 @@ function App() {
         </nav>
 
         <Routes>
+           <Route path="/" element={<HomePage />} />
           <Route path="/create" element={<CreateQuiz />} />
           <Route path="/quizzes" element={<QuizList />} />
           <Route path="/quiz/:id" element={<TakeQuiz />} />

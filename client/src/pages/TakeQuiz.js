@@ -33,11 +33,38 @@ export default function TakeQuiz() {
 
   if (showResult) {
     return (
-      <div>
-        <h2>Quiz Completed Successfully!!!</h2>
-        <p>Score: {score}/{quiz.questions.length}</p>
-      </div>
-    );
+  <div style={{ padding: "20px", textAlign: "center" }}>
+    <h2 style={{ color: "#333" }}>Quiz Completed Successfully!!!</h2>
+
+    <p style={{ fontSize: "18px", marginTop: "10px" }}>
+      Your Score For This Quiz is <strong>{score}</strong> Out of{" "}
+      <strong>{quiz.questions?.length || 0}</strong>
+    </p>
+
+    <p
+      style={{
+        marginTop: "8px",
+        color: score >= quiz.questions.length / 2 ? "green" : "crimson",
+      }}
+    >
+      {score >= quiz.questions.length / 2
+        ? "Well Done!!!"
+        : "Better Luck Next Time"}
+    </p>
+
+    <div style={{ marginTop: "25px" }}>
+      <a href="/quizzes">
+        <button style={{ padding: "10px 16px", marginRight: "12px" }}>
+          ← Back to The Quizzes
+        </button>
+      </a>
+
+      <a href="/create">
+        <button style={{ padding: "10px 16px" }}>Create Your Own Quiz</button>
+      </a>
+    </div>
+  </div>
+);
   }
 
   return (

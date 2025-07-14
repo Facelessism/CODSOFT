@@ -6,7 +6,7 @@ import CreateQuiz from "./pages/CreateQuiz";
 import QuizList from "./pages/QuizList";
 import TakeQuiz from "./pages/TakeQuiz";
 import HomePage from "./pages/HomePage";
-
+import NavBar from "//components/NavBar";
 
 function App() {
   useEffect(() => {
@@ -24,15 +24,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <h1>JazzQuizMaker</h1>
-
-         <nav>
-          <Link to="/quizzes">Browse For Quizzes</Link>{" "}
-          {localStorage.getItem("token") && (
-            <>
-              | <Link to="/create">Create Quiz</Link>
-            </>
-          )}
-        </nav>
+        <NavBar />
 
         <Routes>
            <Route path="/" element={<HomePage />} />

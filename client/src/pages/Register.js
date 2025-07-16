@@ -1,17 +1,32 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../styles/Register.css";
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+ const navigate = useNavigate();
+
+ const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateEmail(form.email)) {
+      alert("Invalid email format");
+      return;
+    }
+    if (form.password.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:5000/api/auth/register", form);
       alert("Registered Successfully!");
+       navigate("/");
     } catch (err) {
-      console.error("Registration failed:", err);
+      console.error("Registration failed", err);
       alert("Failed to register. Try again.");
     }
   };

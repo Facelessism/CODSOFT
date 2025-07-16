@@ -4,6 +4,18 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+router.get("/me", (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).json({ message: "No Token" });
+
+  try {
+    const data = jwt.verify(token, "secret");
+    res.json(data);
+  } catch {
+    res.status(401).json({ message: "Invalid Token" });
+  }
+});
+
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -25,8 +37,7 @@ router.post("/login", async (req, res) => {
 
     const match = await bcrypt.compare(password, existing.password);
     if (!match) return res.status(401).json({ message: "Wrong Password!!!" });
-
-    const token = jwt.sign({ id: existing._id }, "secret");
+    const token = jwt.sign({ id: existing._id, name: existing.name }, "secret");
     res.json({ token, name: existing.name });
   } catch (err) {
     console.log("Login Error:", err);

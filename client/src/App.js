@@ -7,6 +7,9 @@ import QuizList from "./pages/QuizList";
 import TakeQuiz from "./pages/TakeQuiz";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 
 export default function App() {
   useEffect(() => {
@@ -34,6 +37,8 @@ export default function App() {
             <Route path="/create" element={<CreateQuiz />} />
             <Route path="/quizzes" element={<QuizList />} />
             <Route path="/quiz/:id" element={<TakeQuiz />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<h2>404 - Page Not Found!!!</h2>} />
           </Routes>
         </main>

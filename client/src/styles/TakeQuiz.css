@@ -17,7 +17,7 @@
 }
 
 .quiz-box h3 {
-  color: #cefcff;
+  color: #072cfd;
   margin-bottom: 10px;
 }
 
@@ -43,6 +43,7 @@
   transition: background 0.3s ease;
   font-size: 16px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color:#000000;
 }
 
 .option:hover {
@@ -50,8 +51,8 @@
 }
 
 .option.selected {
-  background: #019a8e;
-  color: white;
+  background: #001570;
+  color:#000000;
 }
 
 .nav {

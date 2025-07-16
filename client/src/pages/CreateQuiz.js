@@ -51,7 +51,7 @@ export default function CreateQuiz() {
       await axios.post("http://localhost:5000/api/quiz/create", {
         title,
         questions,
-        createdBy: user.id,
+        createdBy: user?.id,
       });
       alert("Quiz created successfully!");
       navigate("/");

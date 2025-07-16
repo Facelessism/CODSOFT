@@ -13,6 +13,18 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.get("/all", async (req, res) => {
+  try {
+    const quizzes = await Quiz.find({});
+    if (!quizzes || quizzes.length === 0) {
+      return res.status(404).json({ message: "No quizzes found" });
+    }
+    res.json(quizzes);
+  } catch (err) {
+    console.error("Error fetching all quizzes:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 router.get("/:id", async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.id);

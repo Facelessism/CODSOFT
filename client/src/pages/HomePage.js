@@ -33,7 +33,7 @@ export default function HomePage() {
         </div>
 
         <p className="homepage-note">
-          NOTE — This platform is still in its early phase of development.
+          NOTE- This platform is still in its early phase of development.
         </p>
       </div>
     </div>

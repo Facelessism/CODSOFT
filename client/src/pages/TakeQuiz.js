@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import "../styles/TakeQuiz.css";
 
 export default function TakeQuiz() {
   const { id } = useParams();
@@ -11,77 +12,77 @@ export default function TakeQuiz() {
   const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/quiz/${id}`)
-      .then(res => setQuiz(res.data))
-      .catch(err => console.log("Quiz fetch failed", err));
+    axios
+      .get(`http://localhost:5000/api/quiz/${id}`)
+      .then((res) => setQuiz(res.data))
+      .catch((err) => console.error("Quiz fetch failed:", err));
   }, [id]);
 
   const handleNext = () => {
     if (selected === quiz.questions[current].answer) {
-      setScore(score + 1);
+      setScore((prev) => prev + 1);
     }
     setSelected("");
-
     if (current + 1 < quiz.questions.length) {
-      setCurrent(current + 1);
+      setCurrent((prev) => prev + 1);
     } else {
       setShowResult(true);
     }
   };
 
-  if (!quiz) return <div>Loading...</div>;
+  if (!quiz) return <div className="quiz-loading">Loading...</div>;
 
   if (showResult) {
     return (
-  <div style={{ padding: "20px", textAlign: "center" }}>
-    <h2 style={{ color: "#333" }}>Quiz Completed Successfully!!!</h2>
-
-    <p style={{ fontSize: "18px", marginTop: "10px" }}>
-      Your Score For This Quiz is <strong>{score}</strong> Out of{" "}
-      <strong>{quiz.questions?.length || 0}</strong>
-    </p>
-
-    <p
-      style={{
-        marginTop: "8px",
-        color: score >= quiz.questions.length / 2 ? "green" : "crimson",
-      }}
-    >
-      {score >= quiz.questions.length / 2
-        ? "Well Done!!!"
-        : "Better Luck Next Time"}
-    </p>
-
-    <div style={{ marginTop: "25px" }}>
-      <a href="/quizzes">
-        <button style={{ padding: "10px 16px", marginRight: "12px" }}>
-          ← Back to The Quizzes
-        </button>
-      </a>
-
-      <a href="/create">
-        <button style={{ padding: "10px 16px" }}>Create Your Own Quiz</button>
-      </a>
-    </div>
-  </div>
-);
+      <div className="result-container">
+        <h2>🎉 Quiz Completed Successfully!</h2>
+        <p>
+          Your Score: <strong>{score}</strong> out of{" "}
+          <strong>{quiz.questions?.length || 0}</strong>
+        </p>
+        <p className={score >= quiz.questions.length / 2 ? "success" : "fail"}>
+          {score >= quiz.questions.length / 2
+            ? "Well Done!"
+            : "Better Luck Next Time"}
+        </p>
+        <div className="result-buttons">
+          <Link to="/quizzes">
+            <button>← Back to Quizzes</button>
+          </Link>
+          <Link to="/create">
+            <button>Create Your Own Quiz</button>
+          </Link>
+        </div>
+      </div>
+    );
   }
 
+  const currentQ = quiz.questions[current];
+
   return (
-    <div>
-      <h2>{quiz.title}</h2>
-      <p>{quiz.questions[current].question}</p>
-      {quiz.questions[current].options.map((opt, i) => (
-        <div key={i}>
-          <input
-            type="radio"
-            value={opt}
-            checked={selected === opt}
-            onChange={() => setSelected(opt)}
-          /> {opt}
+    <div className="quiz-container">
+      <div className="quiz-box">
+        <h3>
+          Question {current + 1} / {quiz.questions.length}
+        </h3>
+        <h2>{currentQ.question}</h2>
+        <div className="options">
+          {currentQ.options.map((opt, i) => (
+            <button
+              key={i}
+              className={`option ${selected === opt ? "selected" : ""}`}
+              onClick={() => setSelected(opt)}
+            >
+              {String.fromCharCode(65 + i)}. {opt}
+            </button>
+          ))}
         </div>
-      ))}
-      <button onClick={handleNext}>Next</button>
+        <div className="nav">
+          <button onClick={handleNext} disabled={!selected}>
+            {current + 1 === quiz.questions.length ? "Finish" : "Next →"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

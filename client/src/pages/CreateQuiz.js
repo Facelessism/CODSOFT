@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import getUserInfo from "../auth/userInfo";
+import getUserInfo from "../auth/UserInfo";
+import "../styles/CreateQuiz.css";
 
 export default function CreateQuiz() {
   const navigate = useNavigate();
@@ -41,18 +42,16 @@ export default function CreateQuiz() {
     setError("");
 
     const user = getUserInfo();
-
-    if (!title || questions.length === 0) {
-      setError("Please add a title and at least one question.");
+    if (!user || !user.id) {
+      setError("Invalid User");
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/quiz/create", 
-        {
+      await axios.post("http://localhost:5000/api/quiz/create", {
         title,
         questions,
-        createdBy: user?.username || "guest-user",
+        createdBy: user.id,
       });
       alert("Quiz created successfully!");
       navigate("/");
@@ -63,76 +62,80 @@ export default function CreateQuiz() {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: "20px" }}>
-      <h2>Create A Quiz</h2>
+    <div className="create-container">
+      <form className="quiz-form" onSubmit={handleSubmit}>
+        <h2>Create a New Quiz</h2>
+        {error && <p className="error">{error}</p>}
 
-      {error && <p style={{ color: "crimson" }}>{error}</p>}
+        <input
+          type="text"
+          placeholder="Enter quiz title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="title-input"
+          required
+        />
 
-      <input
-        type="text"
-        placeholder="Quiz Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-        style={{ display: "block", marginBottom: "10px", padding: "8px" }}
-      />
-
-      {questions.map((q, i) => (
-        <div key={i} style={{ marginBottom: "20px" }}>
-          <input
-            type="text"
-            placeholder={`Question ${i + 1}`}
-            value={q.question}
-            onChange={(e) => handleChange(i, "question", e.target.value)}
-            style={{ display: "block", marginBottom: "8px", padding: "8px" }}
-          />
-          {q.options.map((opt, j) => (
+        {questions.map((q, i) => (
+          <div className="question-block" key={i}>
             <input
-              key={j}
               type="text"
-              placeholder={`Option ${j + 1}`}
-              value={opt}
-              onChange={(e) => handleChange(i, j, e.target.value)}
-              style={{ marginBottom: "5px", padding: "6px", width: "80%" }}
+              placeholder={`Question ${i + 1}`}
+              value={q.question}
+              onChange={(e) => handleChange(i, "question", e.target.value)}
+              className="question-input"
+              required
             />
-          ))}
-          <input
-            type="text"
-            placeholder="Correct Answer"
-            value={q.answer}
-            onChange={(e) => handleChange(i, "answer", e.target.value)}
-            style={{ display: "block", padding: "8px", marginTop: "6px" }}
-          />
+
+            <div className="options">
+              {q.options.map((opt, j) => (
+                <input
+                  key={j}
+                  type="text"
+                  placeholder={`Option ${j + 1}`}
+                  value={opt}
+                  onChange={(e) => handleChange(i, j, e.target.value)}
+                  required
+                />
+              ))}
+            </div>
+
+            <input
+              type="text"
+              placeholder="Correct Answer"
+              value={q.answer}
+              onChange={(e) => handleChange(i, "answer", e.target.value)}
+              className="answer-input"
+              required
+            />
+          </div>
+        ))}
+
+        <div className="btn-row">
+          <button type="button" onClick={addQuestion} className="add-btn">
+            + Add Question
+          </button>
+          <button type="submit" className="submit-btn">
+            ✅ Submit Quiz
+          </button>
         </div>
-      ))}
+      </form>
 
-      <button
-        type="button"
-        onClick={addQuestion}
-        style={{ padding: "10px 14px", marginRight: "12px" }}
-      >
-        +Add Question
-      </button>
-
-      <button type="submit" style={{ padding: "10px 16px" }}>
-        ✅Submit Your Quiz
-      </button>
-
-      <div style={{ marginTop: "30px", padding: "15px", borderTop: "1px solid #ccc" }}>
+      <div className="preview-block">
         <h3>Quiz Preview</h3>
         <p><strong>Title:</strong> {title || "(No Title Yet)"}</p>
         {questions.map((q, i) => (
-          <div key={i} style={{ marginBottom: "15px" }}>
-            <p><strong>Q{i + 1}:</strong> {q.question || "(No Question)"}</p>
+          <div className="preview-question" key={i}>
+            <p><strong>Q{i + 1}:</strong> {q.question || "..."}</p>
             <ul>
               {q.options.map((opt, j) => (
                 <li key={j}>{opt || "..."}</li>
               ))}
             </ul>
-            <p style={{ color: "green" }}>Answer: {q.answer || "?"}</p>
+            <p className="answer">✔ Answer: {q.answer || "?"}</p>
           </div>
         ))}
       </div>
-    </form>
+    </div>
   );
 }

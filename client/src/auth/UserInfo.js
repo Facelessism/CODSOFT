@@ -1,12 +1,12 @@
-export default function getUserInfo() {
-  const token = localStorage.getItem("token");
-  if (!token) return null;
+import { jwt_decode, jwtDecode } from "jwt-decode";
 
+export default function getUserInfo() {
   try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload;
+    const token = localStorage.getItem("token");
+    if (!token) return null;
+    return jwtDecode(token);
   } catch (err) {
-    console.error("Token decoding failed...", err);
+    console.error("Invalid token", err);
     return null;
   }
 }

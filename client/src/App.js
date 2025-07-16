@@ -6,9 +6,9 @@ import CreateQuiz from "./pages/CreateQuiz";
 import QuizList from "./pages/QuizList";
 import TakeQuiz from "./pages/TakeQuiz";
 import HomePage from "./pages/HomePage";
-import NavBar from "//components/NavBar";
+import NavBar from "./components/NavBar";
 
-function App() {
+export default function App() {
   useEffect(() => {
     const ua = navigator.userAgent.toLowerCase();
     if (ua.includes("linux")) {
@@ -23,18 +23,21 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>JazzQuizMaker</h1>
-        <NavBar />
+        <header className="app-header">
+          <h1 className="app-title">JAZZQUIZMAKER</h1>
+          <NavBar />
+        </header>
 
-        <Routes>
-           <Route path="/" element={<HomePage />} />
-          <Route path="/create" element={<CreateQuiz />} />
-          <Route path="/quizzes" element={<QuizList />} />
-          <Route path="/quiz/:id" element={<TakeQuiz />} />
-        </Routes>
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/create" element={<CreateQuiz />} />
+            <Route path="/quizzes" element={<QuizList />} />
+            <Route path="/quiz/:id" element={<TakeQuiz />} />
+            <Route path="*" element={<h2>404 - Page Not Found!!!</h2>} />
+          </Routes>
+        </main>
       </div>
     </BrowserRouter>
   );
 }
-
-export default App;

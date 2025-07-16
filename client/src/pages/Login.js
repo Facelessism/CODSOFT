@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import "../styles/Login.css";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -11,24 +12,33 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       alert("Welcome " + res.data.name);
     } catch (err) {
-      console.log("Login failed", err);
+      console.error("Login failed:", err);
+      alert("Invalid email or password");
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login Now!!!</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
-      <button type="submit">LOGIN</button>
-    </form>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2 className="login-title">Login</h2>
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+          required
+        />
+
+        <button type="submit" className="login-btn">Login</button>
+      </form>
+    </div>
   );
 }

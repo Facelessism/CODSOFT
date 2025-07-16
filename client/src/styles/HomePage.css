@@ -1,0 +1,113 @@
+.homepage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: linear-gradient(to right, #e6f7ff, #ccf2ff);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.homepage-card {
+  background-color: #fff;
+  padding: 60px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 440px;
+  box-sizing: border-box;
+}
+
+.homepage-title {
+  font-size: 3rem;
+  color: #007acc;
+  margin-bottom: 12px;
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 200%;
+}
+
+.homepage-subtitle {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.homepage-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.homepage-btn {
+  background-color: #007acc;
+  color: #fff;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.homepage-btn:hover {
+  background-color: #005fa3;
+}
+
+.homepage-btn.alt {
+  background-color: #f57c00;
+}
+
+.homepage-btn.alt:hover {
+  background-color: #c95f00;
+}
+
+.homepage-note {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 15px;
+}
+
+
+@media screen and (max-width: 480px) { 
+  .homepage-card {
+    padding: 40px 20px;
+  }
+
+  .homepage-title {
+    font-size: 2.1rem;
+  }
+
+  .homepage-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .homepage-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .homepage-btn {
+    width: 100%;
+    max-width: 240px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .homepage-title {
+    font-size: 2.4rem;
+  }
+
+  .homepage-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .homepage-btn {
+    font-size: 0.95rem;
+  }
+}

@@ -4,12 +4,16 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+require("dotenv").config();
+
+const secret = process.env.JWT_SECRET;
+
 router.get("/me", (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ message: "No Token" });
 
   try {
-    const data = jwt.verify(token, "secret");
+    const data = jwt.verify(token, secret);
     res.json(data);
   } catch {
     res.status(401).json({ message: "Invalid Token" });
@@ -19,6 +23,9 @@ router.get("/me", (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).json({ message: "Email already exists" });
+
     const hashed = await bcrypt.hash(password, 10);
     const user = new User({ name, email, password: hashed });
     await user.save();

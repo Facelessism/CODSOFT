@@ -11,9 +11,9 @@
 
 ### Job Board Website:
 ## 1. Clone the Repository in Git Bash-
-  git clone https://github.com/your-username/CODSOFT.git
+  git clone https://github.com/Facelessism/CODSOFT.git
   cd CODSOFT
-## 2. Switch to "master" Branch
+## 2. Switch to the "master" Branch
   git checkout master
 ## 3. Start The Backend
   cd server
@@ -27,7 +27,7 @@
   ### Online Quiz Maker:
 
   ## 1. Clone the Repository in Git Bash-
-  git clone https://github.com/your-username/CODOSOFT.git
+  git clone https://github.com/Facelessism/CODSOFT.git
   cd CODSOFT
 ## 2. Switch to "master2" Branch
   git checkout master2
